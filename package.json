@@ -10,13 +10,18 @@
     "Other",
     "Programming Languages"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:ftl"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
+    "commands": [],
+    "languages": [
       {
-        "command": "vscode-freemarker-tipster.helloWorld",
-        "title": "Hello World"
+        "id": "ftl",
+        "extensions": [
+          ".ftl"
+        ]
       }
     ]
   },
