@@ -9,3 +9,4 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Provide code navigation support for `macro` and `function` in `.ftl` files.
+- Provide existed `macro` completion items.
