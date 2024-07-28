@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import provideDefinition from "./provideDefinition";
 import provideMacroCompletionItems from "./provideMacroCompletionItems";
+import provideDirectivesCompletionItems from "./provideDirectivesCompletionItems";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -30,7 +31,21 @@ export function activate(context: vscode.ExtensionContext) {
       "@"
     );
 
-  context.subscriptions.push(definitionProvider, macroCompletionItemProvider);
+  // completion item provider for all FreeMarker directives
+  const directivesCompletionItems =
+    vscode.languages.registerCompletionItemProvider(
+      ftlDocumentSelector,
+      {
+        provideCompletionItems: provideDirectivesCompletionItems,
+      },
+      "#"
+    );
+
+  context.subscriptions.push(
+    definitionProvider,
+    macroCompletionItemProvider,
+    directivesCompletionItems
+  );
 }
 
 // This method is called when your extension is deactivated
