@@ -3,6 +3,7 @@
   "displayName": "freemarker tipster",
   "description": "",
   "version": "0.0.1",
+  "icon": "assets/images/logo.png",
   "author": "Orchard",
   "publisher": "OrcaTeam",
   "repository": "https://github.com/orca-team/vscode-freemarker-tipster.git",
