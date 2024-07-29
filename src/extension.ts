@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
   // completion item provider for all FreeMarker directives
-  const directivesCompletionItems =
+  const directivesCompletionItemProvider =
     vscode.languages.registerCompletionItemProvider(
       ftlDocumentSelector,
       {
@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     definitionProvider,
     macroCompletionItemProvider,
-    directivesCompletionItems
+    directivesCompletionItemProvider
   );
 }
 
