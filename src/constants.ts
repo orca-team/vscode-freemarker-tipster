@@ -1,16 +1,4 @@
-type DifferentReference = {
-  condition: string;
-
-  currentRef: string;
-};
-
-type DirectiveInfo = {
-  name: string;
-
-  ref: string | DifferentReference[];
-
-  deprecated?: boolean;
-};
+import { DirectiveInfo } from "./types";
 
 /**
  * All FreeMarker directives references information

@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 import provideDefinition from "./provideDefinition";
 import provideMacroCompletionItems from "./provideMacroCompletionItems";
 import provideDirectivesCompletionItems from "./provideDirectivesCompletionItems";
+import provideDirectivesHover from "./provideDirectivesHover";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -41,10 +42,19 @@ export function activate(context: vscode.ExtensionContext) {
       "#"
     );
 
+  // hover for all FreeMarker directives
+  const directivesHoverProvider = vscode.languages.registerHoverProvider(
+    ftlDocumentSelector,
+    {
+      provideHover: provideDirectivesHover,
+    }
+  );
+
   context.subscriptions.push(
     definitionProvider,
     macroCompletionItemProvider,
-    directivesCompletionItemProvider
+    directivesCompletionItemProvider,
+    directivesHoverProvider
   );
 }
 

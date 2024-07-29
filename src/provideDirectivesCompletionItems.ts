@@ -4,12 +4,12 @@ import {
   CompletionItem,
   CompletionItemKind,
   CompletionList,
-  MarkdownString,
   Position,
   ProviderResult,
   TextDocument,
 } from "vscode";
 import { ALL_DIRECTIVES } from "./constants";
+import { generateDirectiveDisplayInfo } from "./utils";
 
 function isDirectiveTagPrefix(lineText: string) {
   const atSignIndex = lineText.lastIndexOf("#");
@@ -28,19 +28,9 @@ export default function provideDirectivesCompletionItems(
   // complete all FreeMarker directives
   if (isDirectiveTagPrefix(lineText)) {
     return Promise.resolve(
-      ALL_DIRECTIVES.map(({ name, ref, deprecated }) => {
-        const label = deprecated ? `${name} (deprecated)` : name;
-        const referenceText = Array.isArray(ref)
-          ? ref
-              .map(
-                ({ condition, currentRef }) =>
-                  `If you ${condition}, see this [reference](${currentRef}).`
-              )
-              .join("\n\n")
-          : `[FreeMarker Reference](${ref})`;
-        const documentation = new MarkdownString(
-          `***${label}***\n\n${referenceText}`
-        );
+      ALL_DIRECTIVES.map((info) => {
+        const { title: label, markdownContent: documentation } =
+          generateDirectiveDisplayInfo(info);
         const completion = new CompletionItem(
           label,
           CompletionItemKind.Property
