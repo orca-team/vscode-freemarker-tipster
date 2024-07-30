@@ -12,3 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Provide existed `macro` completion items.
 - Provide completions items for all `FreeMarker` directives.
 - Provide hover tips for all `FreeMarker` directives.
+
+## [0.0.1] - 2024-07-30
+
+Prepare for the first release.
