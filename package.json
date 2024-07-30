@@ -50,6 +50,7 @@
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "prepare": "husky",
+    "publish": "vsce publish --no-dependencies",
     "release": "release-it"
   },
   "devDependencies": {
