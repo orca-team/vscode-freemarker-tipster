@@ -11,7 +11,14 @@ import {
 
 function isStartsWithMacro(lineText: string) {
   const atSignIndex = lineText.lastIndexOf("@");
-  return atSignIndex > 0 && lineText[atSignIndex - 1] === "<";
+
+  if (atSignIndex <= 0) {
+    return false;
+  }
+
+  return (
+    lineText[atSignIndex - 1] === "<" && !/\s/.test(lineText.slice(atSignIndex))
+  );
 }
 
 export default function provideMacroCompletionItems(
