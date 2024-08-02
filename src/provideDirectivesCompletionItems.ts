@@ -12,8 +12,16 @@ import { ALL_DIRECTIVES } from "./constants";
 import { generateDirectiveDisplayInfo } from "./utils";
 
 function isDirectiveTagPrefix(lineText: string) {
-  const atSignIndex = lineText.lastIndexOf("#");
-  return atSignIndex > 0 && lineText[atSignIndex - 1] === "<";
+  const poundSignIndex = lineText.lastIndexOf("#");
+
+  if (poundSignIndex <= 0) {
+    return false;
+  }
+
+  return (
+    lineText[poundSignIndex - 1] === "<" &&
+    !/\s/.test(lineText.slice(poundSignIndex))
+  );
 }
 
 export default function provideDirectivesCompletionItems(
