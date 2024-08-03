@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 - Provides incorrect completions after fully typing macros and directives.
+- Incorrect completions for deprecated directives.
 
 ## [1.0.0] - 2024-07-30
 

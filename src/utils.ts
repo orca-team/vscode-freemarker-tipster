@@ -1,4 +1,4 @@
-import { MarkdownString } from "vscode";
+import { CompletionItemLabel, MarkdownString } from "vscode";
 import { DirectiveInfo } from "./types";
 
 /**
@@ -20,7 +20,10 @@ export function generateDirectiveDisplayInfo(info: DirectiveInfo) {
   );
 
   return {
-    title,
+    label: {
+      label: name,
+      detail: deprecated ? " (deprecated)" : null,
+    } as CompletionItemLabel,
     referenceText,
     markdownContent,
   };

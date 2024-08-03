@@ -37,7 +37,7 @@ export default function provideDirectivesCompletionItems(
   if (isDirectiveTagPrefix(lineText)) {
     return Promise.resolve(
       ALL_DIRECTIVES.map((info) => {
-        const { title: label, markdownContent: documentation } =
+        const { label, markdownContent: documentation } =
           generateDirectiveDisplayInfo(info);
         const completion = new CompletionItem(
           label,
