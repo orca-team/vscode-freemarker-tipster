@@ -2,7 +2,7 @@
   "name": "freemarker-tipster",
   "displayName": "freemarker tipster",
   "description": "Provides support for variable navigation and code completion for Freemarker.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "icon": "assets/images/logo.png",
   "author": "Orchard",
   "publisher": "OrcaTeam",
