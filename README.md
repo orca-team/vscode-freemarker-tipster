@@ -26,4 +26,6 @@ If you start typing with `<#`, you can get completion suggestions for the freema
 
 ### The completion of built-ins
 
+If you type with `?` after a valid variable name, you can get completion suggestions for the built-ins.
+
 ![built-ins completion](assets/images//builtInsCompletion.png)
