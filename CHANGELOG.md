@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+- Provide completions items form all `FreeMarker` built-ins.
+
 ### Fixed
 
 - Provides incorrect completions after fully typing macros and directives.

@@ -22,3 +22,34 @@ export type DirectiveInfo = {
   /** Whether the directive is deprecated */
   deprecated?: boolean;
 };
+
+/**
+ * Defines the structure of built-in reference information.
+ */
+export type BuiltInReferenceInfo = {
+  /** built-in name */
+  name: string;
+
+  /** reference */
+  ref: string | DifferentReference[];
+
+  /** description */
+  description?: string;
+
+  /** whether the built-in is deprecated */
+  deprecated?: boolean;
+};
+
+/**
+ * Defines the structure of built-in information.
+ */
+export type BuiltInInfo = {
+  /** built-ins act on */
+  actType: string;
+
+  /** description */
+  description: string;
+
+  /** built-ins */
+  builtIns: BuiltInReferenceInfo[];
+};
