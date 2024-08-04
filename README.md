@@ -23,3 +23,7 @@ If you start typing with `<@`, you can get completion suggestions for the curren
 If you start typing with `<#`, you can get completion suggestions for the freemarker directives.
 
 ![directives completion](assets/images/directivesCompletion.png)
+
+### The completion of built-ins
+
+![built-ins completion](assets/images//builtInsCompletion.png)
