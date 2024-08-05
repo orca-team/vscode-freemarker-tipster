@@ -1,7 +1,7 @@
 {
   "name": "freemarker-tipster",
   "displayName": "freemarker tipster",
-  "description": "Provides support for variable navigation and code completion for Freemarker.",
+  "description": "Provides support for variable navigation and code completion for FreeMarker.",
   "version": "1.1.0",
   "icon": "assets/images/logo.png",
   "author": "Orchard",
@@ -14,6 +14,7 @@
     "vscode",
     "vscode extension",
     "freemarker",
+    "FreeMarker",
     "ftl",
     "navigation",
     "completion"
