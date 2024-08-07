@@ -6,6 +6,7 @@ import provideMacroCompletionItems from "./provideMacroCompletionItems";
 import provideDirectivesCompletionItems from "./provideDirectivesCompletionItems";
 import provideDirectivesHover from "./provideDirectivesHover";
 import provideBuiltInsCompletionItems from "./provideBuiltInsCompletionItems";
+import provideVariableCompletionItems from "./provideVariableCompletionItems";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -61,12 +62,23 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // completion item provider for variables
+  const variablesCompletionItemProvider =
+    vscode.languages.registerCompletionItemProvider(
+      ftlDocumentSelector,
+      {
+        provideCompletionItems: provideVariableCompletionItems,
+      },
+      ""
+    );
+
   context.subscriptions.push(
     definitionProvider,
     macroCompletionItemProvider,
     directivesCompletionItemProvider,
     builtInsCompletionItemProvider,
-    directivesHoverProvider
+    directivesHoverProvider,
+    variablesCompletionItemProvider
   );
 }
 
