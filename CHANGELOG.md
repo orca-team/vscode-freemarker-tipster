@@ -4,6 +4,12 @@ All notable changes to the "vscode-freemarker-tipster" extension will be documen
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+### Changed
+
+- Variable completion items for array items.
+
 ## [1.2.0] - 2024-08-07
 
 ### Added

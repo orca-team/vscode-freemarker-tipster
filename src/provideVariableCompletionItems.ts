@@ -13,7 +13,7 @@ import { variablePattern } from "./patterns";
 const assignMatchReg = new RegExp(`<#assign\\s+(${variablePattern})\\s*=`);
 const functionMatchReg = new RegExp(`<#function\\s+(${variablePattern})\\s*`);
 const typingVarReg = new RegExp(
-  `((?:<#if|<#elseif|<#list|<#switch)\\s+|(?:\\$\\{|=|\\(|,|&&|\\|\\|)\\s*)(${variablePattern})$`
+  `((?:<#if|<#elseif|<#list|<#switch)\\s+|(?:\\$\\{|=|\\(|\\[|,|&&|\\|\\|)\\s*)(${variablePattern})$`
 );
 
 function isTypingVariable(lineText: string) {
