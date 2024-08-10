@@ -13,8 +13,11 @@ import { variablePattern } from "./patterns";
 import { getFragmentDeclarationReg } from "./regex";
 import { isValidValue } from "./utils";
 
-const assignMatchReg = new RegExp(`<#assign\\s+(${variablePattern})\\s*=`);
-const functionMatchReg = new RegExp(`<#function\\s+(${variablePattern})\\s*`);
+const assignMatchReg = new RegExp(`<#assign\\s+(${variablePattern})\\s*=`, "g");
+const functionMatchReg = new RegExp(
+  `<#function\\s+(${variablePattern})\\s*`,
+  "g"
+);
 const localMatchReg = new RegExp(`<#local\\s+(${variablePattern})\\s*=`, "g");
 const typingVarReg = new RegExp(
   `((?:<#if|<#elseif|<#list|<#switch)\\s+|(?:\\$\\{|=|\\(|\\[|,|&&|\\|\\|)\\s*)(${variablePattern})$`
@@ -24,21 +27,20 @@ function isTypingVariable(lineText: string) {
   return typingVarReg.test(lineText);
 }
 
-function collectGlobalVariables(
+function matchAllVariables(
   document: TextDocument,
-  match: (lineText: string) => string | undefined
+  matchValue: (match: RegExpExecArray) => string | undefined,
+  options: { globalReg: RegExp; range?: Range }
 ) {
-  const lineCount = document.lineCount;
-  let line = 0;
+  const { globalReg, range } = options;
   const result: string[] = [];
-
-  while (line < lineCount) {
-    const lineText = document.lineAt(line).text;
-    const value = match(lineText);
+  const rangeText = document.getText(range);
+  const matches = rangeText.matchAll(globalReg);
+  for (const match of matches) {
+    const value = matchValue(match);
     if (value && !result.includes(value)) {
       result.push(value);
     }
-    line++;
   }
 
   return result;
@@ -146,29 +148,21 @@ function getClosestFragmentRange(
   );
 }
 
-function collectLocalVariablesByRange(document: TextDocument, range: Range) {
-  const result: string[] = [];
-  const rangeText = document.getText(range);
-  const matches = rangeText.matchAll(localMatchReg);
-  for (const match of matches) {
-    const value = match?.[1];
-    if (value && !result.includes(value)) {
-      result.push(value);
-    }
-  }
-
-  return result;
-}
-
 function collectLocalVariables(document: TextDocument, position: Position) {
   const macroRange = getClosestFragmentRange("macro", document, position);
   if (macroRange) {
-    return collectLocalVariablesByRange(document, macroRange);
+    return matchAllVariables(document, (match) => match?.[1], {
+      globalReg: localMatchReg,
+      range: macroRange,
+    });
   }
 
   const functionRange = getClosestFragmentRange("function", document, position);
   if (functionRange) {
-    return collectLocalVariablesByRange(document, functionRange);
+    return matchAllVariables(document, (match) => match?.[1], {
+      globalReg: localMatchReg,
+      range: functionRange,
+    });
   }
 
   return [];
@@ -184,14 +178,12 @@ export default function provideVariableCompletionItems(
   const lineText = line.text.substring(0, position.character);
 
   if (isTypingVariable(lineText)) {
-    const assignValues = collectGlobalVariables(
-      document,
-      (text) => text.match(assignMatchReg)?.[1]
-    );
-    const functionValues = collectGlobalVariables(
-      document,
-      (text) => text.match(functionMatchReg)?.[1]
-    );
+    const assignValues = matchAllVariables(document, (match) => match?.[1], {
+      globalReg: assignMatchReg,
+    });
+    const functionValues = matchAllVariables(document, (match) => match?.[1], {
+      globalReg: functionMatchReg,
+    });
     const currentLocalValues = collectLocalVariables(document, position);
 
     const assignCompletions = assignValues.map(

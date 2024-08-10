@@ -10,6 +10,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Provide local variable completions items.
 
+### Fixed
+
+- Missing global variable completion items when multiple variables are defined on the same line.
+
 ## [1.2.1] - 2024-08-08
 
 ### Changed
