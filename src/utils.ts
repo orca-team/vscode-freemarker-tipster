@@ -2,6 +2,17 @@ import { CompletionItemLabel, MarkdownString } from "vscode";
 import { DirectiveInfo } from "./types";
 
 /**
+ * Check if a provided value is non-null and non-undefined.
+ * @param value any value
+ * @returns boolean
+ */
+export function isValidValue<V = unknown>(
+  value?: any
+): value is NonNullable<V> {
+  return value !== undefined && value !== null;
+}
+
+/**
  * Generates display information for a directive based on its details.
  */
 export function generateDirectiveDisplayInfo(info: DirectiveInfo) {
