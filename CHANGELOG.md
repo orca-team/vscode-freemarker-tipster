@@ -4,7 +4,7 @@ All notable changes to the "vscode-freemarker-tipster" extension will be documen
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [1.3.0] - 2024-08-11
 
 ### Added
 
