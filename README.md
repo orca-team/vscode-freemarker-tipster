@@ -12,6 +12,12 @@ It allows you to quickly navigate to the definitions of macro and function varia
 
 ![go to definition](assets/images/goToDefinition.gif)
 
+### The completion of assign/local variables and functions
+
+If you start typing a valid variable name, you get completion suggestions:
+
+![variables completions](assets/images/variablesCompletion.png)
+
 ### The completion of macro variables
 
 If you start typing with `<@`, you can get completion suggestions for the current macro variables.
